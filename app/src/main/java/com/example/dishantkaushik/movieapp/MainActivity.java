@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         recyclerView=(RecyclerView)findViewById(R.id.images_view);
         parseJson(popularurl);
+        setTitle("Most Popular Movies");
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,11 +42,14 @@ public class MainActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                     parseJson(popularurl);
                     idchange = 2;
+                    setTitle("Most Popular Movies");
                 } else {
                     Snackbar.make(view, "Changed to Most Rated", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     parseJson(highestRatedUrl);
                     idchange = 1;
+                    setTitle("Most Rated Movies");
+
                 }
             }
         });
@@ -69,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                         movieData.allMovies.add(i,m1);
 
                     }
-                    recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3));
+                    recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
                     recyclerView.setAdapter(new imageAdapter(MainActivity.this));
                 }
                 catch (Exception e){
@@ -86,4 +90,5 @@ public class MainActivity extends AppCompatActivity {
         vollySingleton.getInstance(getApplicationContext()).getRequestQueue().add(jsonObjectRequest);
 
     }
+    
 }

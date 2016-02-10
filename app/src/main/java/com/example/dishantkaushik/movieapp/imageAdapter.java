@@ -1,6 +1,7 @@
 package com.example.dishantkaushik.movieapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ class imageAdapter extends RecyclerView.Adapter<imageAdapter.myViewHolder>{
     }
     @Override
     public void onBindViewHolder(myViewHolder holder, int position) {
-            Picasso.with(context).load("http://image.tmdb.org/t/p/w342//"+movieData.allMovies.get(position).getPosterurl()).into(holder.imageView);
+            Picasso.with(context).load("http://image.tmdb.org/t/p/w500//"+movieData.allMovies.get(position).getPosterurl()).into(holder.imageView);
     }
 
     @Override
@@ -43,9 +44,9 @@ class imageAdapter extends RecyclerView.Adapter<imageAdapter.myViewHolder>{
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //To call intent from here to another activity
-                    Snackbar.make(itemView, movieData.allMovies.get(getAdapterPosition()).getTitle(), Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
+                    Intent intent=new Intent(context,Movie_detail.class);
+                    intent.putExtra("movie_position",getAdapterPosition());
+                    context.startActivity(intent);
                 }
             });
 
