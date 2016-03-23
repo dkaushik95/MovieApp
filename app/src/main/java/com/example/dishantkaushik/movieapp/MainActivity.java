@@ -1,10 +1,13 @@
 package com.example.dishantkaushik.movieapp;
 
+import android.content.ContentResolver;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -19,11 +22,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+
+
     //*Please use your own API Key in the below URL's
+
     private final String popularurl="http://api.themoviedb.org/3/movie/popular?api_key=";//here*
     private final String highestRatedUrl="http://api.themoviedb.org/3/movie/top_rated?api_key=";//and here*
     private RecyclerView recyclerView;
     int idchange;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +50,31 @@ public class MainActivity extends AppCompatActivity {
                     parseJson(popularurl);
                     idchange = 2;
                     setTitle("Most Popular Movies");
-                } else {
+                } else if(idchange==2) {
                     Snackbar.make(view, "Changed to Most Rated", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     parseJson(highestRatedUrl);
-                    idchange = 1;
+                    idchange = 3;
                     setTitle("Most Rated Movies");
 
                 }
+                else {
+                    //CODE HERE
+                    Snackbar.make(view, "To be changed to Favourites", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    //parseJson(favouritesUrl);
+                    parseFav();
+                    idchange = 1;
+                    setTitle("My Favourite Movies");
+                }
             }
         });
+    }
+
+    public void parseFav(){
+        Cursor cursor=getContentResolver().query(MovieProvider.Movies.MOVIES, new String[]{MovieDBContract.ListColumns.POSTER_URL, MovieDBContract.ListColumns._ID}, null, null, null);
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+        recyclerView.setAdapter(new favAdapter(getApplicationContext(),cursor));
     }
 
     public void parseJson(String url){
