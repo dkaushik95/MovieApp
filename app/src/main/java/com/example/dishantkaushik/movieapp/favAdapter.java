@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -53,7 +52,7 @@ class favAdapter extends RecyclerView.Adapter<favAdapter.myViewHolder>{
                     cursor.moveToPosition(getAdapterPosition());
                     Log.e("Image Position", "" + getAdapterPosition());
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("fav_position",cursor.getInt(cursor.getColumnIndex(MovieDBContract.ListColumns._ID)));
+                    intent.putExtra("movie_id",cursor.getInt(cursor.getColumnIndex(MovieDBContract.ListColumns._ID)));
                     context.startActivity(intent);
                 }
             });

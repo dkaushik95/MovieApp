@@ -1,15 +1,13 @@
 package com.example.dishantkaushik.movieapp;
 
-import android.content.ContentResolver;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -26,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     //*Please use your own API Key in the below URL's
 
-    private final String popularurl="http://api.themoviedb.org/3/movie/popular?api_key=";//here*
-    private final String highestRatedUrl="http://api.themoviedb.org/3/movie/top_rated?api_key=";//and here*
+    private final String popularurl="http://api.themoviedb.org/3/movie/popular?api_key=ee7fc288d8f352dbd247fd51129cb18d";//here*
+    private final String highestRatedUrl="http://api.themoviedb.org/3/movie/top_rated?api_key=ee7fc288d8f352dbd247fd51129cb18d";//and here*
     private RecyclerView recyclerView;
     int idchange;
 
@@ -59,10 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else {
-                    //CODE HERE
                     Snackbar.make(view, "To be changed to Favourites", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                    //parseJson(favouritesUrl);
                     parseFav();
                     idchange = 1;
                     setTitle("My Favourite Movies");
@@ -92,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
                         m1.setReleaseDate(temp.getString("release_date"));
                         m1.setTitle(temp.getString("original_title"));
                         m1.setUser_rating(Float.parseFloat(temp.getString("vote_average")));
+                        m1.setMovieID(temp.getString("id"));
                         movieData.allMovies.add(i,m1);
-
                     }
                     recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
                     recyclerView.setAdapter(new imageAdapter(MainActivity.this));

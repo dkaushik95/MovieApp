@@ -12,4 +12,7 @@ import net.simonvt.schematic.annotation.Table;
 public final class MovieDB {
     public static final int VERSION=1;
     @Table(MovieDBContract.ListColumns.class) public static final String MOVIES="movies";
+    @Table(MovieDBContract.RatingListColumns.class) public static final String RATINGS="ratings";
+    @Table(MovieDBContract.VideosListColumns.class) public static final String VIDEOS="videos";
+
 }

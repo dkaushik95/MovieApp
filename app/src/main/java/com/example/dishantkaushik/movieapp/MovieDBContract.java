@@ -1,6 +1,5 @@
 package com.example.dishantkaushik.movieapp;
 
-import net.simonvt.schematic.annotation.AutoIncrement;
 import net.simonvt.schematic.annotation.DataType;
 import net.simonvt.schematic.annotation.PrimaryKey;
 
@@ -10,7 +9,7 @@ import net.simonvt.schematic.annotation.PrimaryKey;
 public class MovieDBContract {
     public interface ListColumns {
 
-        @DataType(DataType.Type.INTEGER) @PrimaryKey @AutoIncrement String _ID = "_id";
+        @DataType(DataType.Type.INTEGER) @PrimaryKey String _ID = "_id";
 
         @DataType(DataType.Type.TEXT)  String TITLE = "title";
 
@@ -22,5 +21,25 @@ public class MovieDBContract {
 
         @DataType(DataType.Type.TEXT) String RELEASE_DATE="release_date";
 
+
+
+    }
+    public interface RatingListColumns{
+        @DataType(DataType.Type.INTEGER) @PrimaryKey String _RID="_rid";
+
+        @DataType(DataType.Type.TEXT) String AUTHOR="author";
+
+        @DataType(DataType.Type.TEXT) String CONTENT="content";
+    }
+    public interface VideosListColumns{
+        @DataType(DataType.Type.INTEGER) @PrimaryKey String _VID="_vid";
+
+        @DataType(DataType.Type.TEXT) String NAME="name";
+
+        @DataType(DataType.Type.TEXT) String SITE="site";
+
+        @DataType(DataType.Type.TEXT) String SIZE="size";
+
+        @DataType(DataType.Type.TEXT) String KEY="key";
     }
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class movieData {
     static ArrayList<movieData> allMovies=new ArrayList<movieData>();
+    private String movieID;
     private String title;
     private String posterurl;
     private String overview;
@@ -61,5 +62,13 @@ public class movieData {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public String getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(String movieID) {
+        this.movieID = movieID;
     }
 }
