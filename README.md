@@ -18,3 +18,6 @@ public class MainActivity extends AppCompatActivity {
 [MainActivity.java](/app/src/main/java/com/example/dishantkaushik/movieapp/MainActivity.java)
 
 ##Enjoy :)
+
+Version 2.0
+> Created a local content provider. Which means that you can now save your favourite movies locally
